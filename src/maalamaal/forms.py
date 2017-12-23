@@ -42,12 +42,14 @@ class RegisterForm(forms.Form):
         qs = User.objects.filter(username=username)
         if qs.exists():
             raise forms.ValidationError("Username is taken")
+        return username
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
         qs = User.objects.filter(email=email)
         if qs.exists():
             raise forms.ValidationError("Email is taken")
+        return email
 
     def clean(self):
         data = self.cleaned_data
@@ -56,5 +58,6 @@ class RegisterForm(forms.Form):
         if password2 != password:
             raise forms.ValidationError("Passwords must match")
 
+        print(data)
         return data
 
