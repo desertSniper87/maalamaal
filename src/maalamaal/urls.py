@@ -37,7 +37,11 @@ urlpatterns = [
     url(r'^products-fbv/$', product_list_view),
     url(r'^products/(?P<pk>\d+)/$', ProductDetailView.as_view()),
     url(r'^products-fbv/(?P<pk>\d+)$', product_detail_view),
-    ] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    ]
+# + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # if settings.DEBUG:
     # urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
+if settings.DEBUG:
+    urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

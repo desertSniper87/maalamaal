@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.views.generic import ListView, DetailView
 from django.shortcuts import render, get_object_or_404
 
@@ -22,23 +23,37 @@ def product_list_view(request):
     return render(request, "products/list.html", context)
 
 
-class ProductDetailView(ListView):
+class ProductDetailView(DetailView):
     queryset = Product.objects.all()
     template_name = "products/detail.html"
 
     def get_context_data(self, *args, **kwargs):
-        context = super(ProductListView, self).get_context_data(*args, **kwargs)
+        context = super(ProductDetailView, self).get_context_data(*args, **kwargs)
         print(context)
         # context['abc'] = '123'
         return context
     
 def product_detail_view(request, pk=None, *args, **kwargs):
     # instance = Product.objects.get(pk=pk) #id
-    instance = get_object_or_404(Product, pk=pk)
-    print(pk)
-    print(args)
-    print(kwargs)
-    queryset = Product.objects.all()
+    # instance = get_object_or_404(Product, pk=pk)
+    # print(pk)
+    # print(args)
+    # print(kwargs)
+    # try:
+        # instance = Product.objects.get(id=pk)
+    # except Product.DoesNotExist:
+        # print("Nothing here")
+        # raise Http404("Product does not exist")
+    # except: 
+        # raise Http404("Nigga please")
+        # print("nigga please")
+
+    qs = Product.objects.filter(id=pk)
+    if qs.exists() and qs.count()==1:
+        instance = qs.first()
+    else:
+        raise Http404("Product does not exist")
+
     # context = {
                # 'object' : queryset #Gives the whole list
               # }
