@@ -20,8 +20,8 @@ def contact_page(request):
                "content" : "Welcome to the Contact page",
                "form" : form
               }
-    if contact_form.is_valid():
-        print(contact_form.cleaned_data)
+    if form.is_valid():
+        print(form.cleaned_data)
     # if request.method == "POST":
         # print(request.POST.get('form_full_name'))
         # print(request.POST.get('form_email'))
