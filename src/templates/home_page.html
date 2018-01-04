@@ -1,10 +1,18 @@
 {%extends "base.html"%}
 {% load static %}
+
+<title>নীড়পাতা</title>
+
+{% block base_head %}
+    <link rel='stylesheet' href={% static "css/main.css"%}>
+{% endblock %}
+
 <!doctype html>
 {%block content%}
 <div class='text-center'>
     <h1>Hello, world!</h1>
 </div>
+<div> {{title}} </div>
 <div class="container">
     <div class="row">
             <img src="{%static 'img/himalaya.jpg'%}" class = 'img-fluid'>
@@ -23,7 +31,6 @@
         </h1>
         {{ premium_content}}
     </div>
-    <div> {{title}} </div>
 </div>
 {%endif%}
 {%endblock%}
