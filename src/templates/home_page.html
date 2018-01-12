@@ -13,14 +13,12 @@
     <h1>Hello, world!</h1>
 </div>
 <div> {{title}} </div>
-<div class="container">
-    <div class="row">
-            <img src="{%static 'img/himalaya.jpg'%}" class = 'img-fluid'>
-        <div class = "col">
-            <p>
-                {{ content }}
-            </p>
-        </div>
+<div class="row">
+        <img src="{%static 'img/himalaya.jpg'%}" class = 'img-fluid'>
+    <div class = "col">
+        <p>
+            {{ content }}
+        </p>
     </div>
 </div>
 {%if premium_content%}

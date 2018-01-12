@@ -13,10 +13,10 @@
     </head>
 
     <body>
-    <div id='nav' class='mb-4'>
     {%include "base/navbar.html" with brand_name="মালামাল"%}
-    </div>
+    <div class="container">
     {% block content %}
+    </div>
     {% endblock %}
     {% include 'base/js.html'%}
     </body>
