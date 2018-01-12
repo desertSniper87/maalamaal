@@ -5,8 +5,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.apps import apps
-from .views import hello_world, home_page, about_page, contact_page, login_page, register_page
 from django .views.generic import TemplateView
+
+from .views import hello_world, home_page, about_page, contact_page, login_page, register_page
+from search.views import SearchProductView
 
 products_name = apps.get_app_config('products').verbose_name
 
@@ -21,7 +23,10 @@ urlpatterns = [
     url(r'^login/$', login_page, name='login'),
     url(r'^register/$', register_page, name='register'),
 
+    url(r'^search/$', SearchProductView.as_view(), name='search'),
+
     url(r'^products/', include(('products.urls', products_name), namespace='products')),
+    # url(r'^search/', include(('search.urls', search_name), namespace='search')),
 ]
 # + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # if settings.DEBUG:
