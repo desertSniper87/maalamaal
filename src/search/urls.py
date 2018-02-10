@@ -1,10 +1,10 @@
 from django.conf.urls import url
 from django.contrib import admin
 
-from products.views import (
+from .views import (
                     SearchProductView,
                     )
 
 urlpatterns = [
-    url(r'^$', SearchProductView.as_view(), name='search'),
+    url(r'^$', SearchProductView.as_view(), name='query'),
 ]
