@@ -40,7 +40,13 @@ INSTALLED_APPS = [
 
     #our apps
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     'products', 'search',
+=======
+    'products', 'search', 'tags',
+    'carts',
+>>>>>>> Stashed changes
 =======
     'products', 'search', 'tags',
     'carts',

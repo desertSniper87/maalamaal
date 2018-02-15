@@ -30,7 +30,12 @@ urlpatterns = [
 
     url(r'^products/', include(('products.urls', products_app_name), namespace='products')),
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     # url(r'^search/', include(('search.urls', search_name), namespace='search')),
+=======
+
+    url(r'^carts/', include(('carts.urls', carts_app_name), namespace='carts')),
+>>>>>>> Stashed changes
 =======
 
     url(r'^carts/', include(('carts.urls', carts_app_name), namespace='carts')),
