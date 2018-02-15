@@ -39,18 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #our apps
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    'products', 'search',
-=======
     'products', 'search', 'tags',
     'carts',
->>>>>>> Stashed changes
-=======
-    'products', 'search', 'tags',
-    'carts',
->>>>>>> Stashed changes
 ]
 
 MIDDLEWARE = [
