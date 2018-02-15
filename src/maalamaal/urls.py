@@ -29,17 +29,8 @@ urlpatterns = [
     url(r'^search/', include(('search.urls', search_app_name), namespace='search')),
 
     url(r'^products/', include(('products.urls', products_app_name), namespace='products')),
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    # url(r'^search/', include(('search.urls', search_name), namespace='search')),
-=======
 
     url(r'^carts/', include(('carts.urls', carts_app_name), namespace='carts')),
->>>>>>> Stashed changes
-=======
-
-    url(r'^carts/', include(('carts.urls', carts_app_name), namespace='carts')),
->>>>>>> Stashed changes
 ]
 # + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # if settings.DEBUG:
