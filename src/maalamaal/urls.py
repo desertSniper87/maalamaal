@@ -12,6 +12,7 @@ from .views import hello_world, home_page, about_page, contact_page, login_page,
 
 products_app_name = apps.get_app_config('products').verbose_name
 search_app_name = apps.get_app_config('search').verbose_name
+carts_app_name = apps.get_app_config('carts').verbose_name
 
 urlpatterns = [
     url(r'^hello/$', hello_world),
@@ -28,7 +29,12 @@ urlpatterns = [
     url(r'^search/', include(('search.urls', search_app_name), namespace='search')),
 
     url(r'^products/', include(('products.urls', products_app_name), namespace='products')),
+<<<<<<< Updated upstream
     # url(r'^search/', include(('search.urls', search_name), namespace='search')),
+=======
+
+    url(r'^carts/', include(('carts.urls', carts_app_name), namespace='carts')),
+>>>>>>> Stashed changes
 ]
 # + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # if settings.DEBUG:
