@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Author            : desertsniper87 <torshobuet@gmail.com>
+# Date              : 20.02.2018
+# Last Modified Date: 20.02.2018
 from django.shortcuts import render
 
 from .models import Cart
@@ -8,23 +13,22 @@ def cart_create(user=None):
     return cart_obj
 
 def cart_home(request): # why there is no self arg?
-    # del request.session['cart_id']
     cart_id = request.session.get("cart_id", None)
-    # if cart_id is None and isinstance(cart_id, int):
-        # print('create new cart')
-        # cart_obj = cart_create()
-        # # request.session['cart_id'] = 2
-    # else:
     qs = Cart.objects.filter(id=cart_id)
+
     if qs.count()==1:
         print("Cart ID exists")
         print(cart_id)
         cart_obj = qs.first()
+        if request.user.is_authenticated == True and cart_obj.user is None:
+            cart_obj.user = request.user
+            cart_obj.save()
+
     else:
         print('create new cart')
-        cart_obj = cart_create()
+        cart_obj = Cart.objects.new_cart(user=request.user)
+        # cart_obj = cart_create()
         request.session['cart_id']=cart_obj.id
-    # cart_obj = Cart.objects.get(id=cart_id)
-    # print(request.session)
-    # print(dir(request.session))
+        print("Cart_ID: ", request.session.get("cart_id"))
+
     return render(request, "carts/home.html", {})
