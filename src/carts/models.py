@@ -12,6 +12,24 @@ User = settings.AUTH_USER_MODEL
 
 
 class CartManager(models.Manager):
+    def new_or_create(self, request):
+        cart_id = request.session.get("cart_id", None)
+        qs = self.get_queryset().filter(id=cart_id)
+
+        if qs.count()==1:
+            print("Cart ID exists")
+            print(cart_id)
+            cart_obj = qs.first()
+            if request.user.is_authenticated == True and cart_obj.user is None:
+                cart_obj.user = request.user
+                cart_obj.save()
+
+        else:
+            print('create new cart')
+            cart_obj = Cart.objects.new_cart(user=request.user)
+            request.session['cart_id']=cart_obj.id
+            print("Cart_ID: ", request.session.get("cart_id"))
+    
     def new_cart(self, user=None):
         print("User", user)
         user_obj = None
