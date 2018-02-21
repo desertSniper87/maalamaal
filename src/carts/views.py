@@ -3,8 +3,9 @@
 # Author            : desertsniper87 <torshobuet@gmail.com>
 # Date              : 20.02.2018
 # Last Modified Date: 21.02.2018
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
+from products.models import Product
 from .models import Cart
 
 
@@ -33,5 +34,11 @@ def cart_update(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
     cart_obj.products.add(product_obj)
     # cart_obj.title
+    if product_obj in cart_obj.products.all():
+        cart_obj.products.remove(product_obj)
+    else:
+        cart_obj.products.add(product_obj)
 
-    return redirect(product_obj.get_absolute_url())
+
+    # return redirect(product_obj.get_absolute_url())
+    return redirect("carts:home")

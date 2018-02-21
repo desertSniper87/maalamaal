@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^products/', include(('products.urls', products_app_name), namespace='products')),
 
     url(r'^carts/', include(('carts.urls', carts_app_name), namespace='carts')),
+
 ]
 # + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 # if settings.DEBUG:

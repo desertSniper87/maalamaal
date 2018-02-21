@@ -1,0 +1,6 @@
+--extra=+f
+--exclude=bin
+--exclude=lib
+--exclude=static_cdn
+--exclude=include
+
