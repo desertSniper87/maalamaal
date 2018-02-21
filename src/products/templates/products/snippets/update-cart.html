@@ -1,10 +1,17 @@
-<form method = 'GET' action='{%url "search:query"%}' class="form-inline my-2 my-lg-0">
-<div class="input-group">
-  <input class="form-control" type="text" placeholder="Search" name='q' aria-label="Search" value='{{request.GET.q}}'>
-  <span class="input-group-btn">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </span>
-</div>
+<form method = 'POST' action='{%url "carts:update"%}' class="form-inline my-2 my-lg-0"> {%csrf_token%}
+    <input type="hidden" name="product_id" value="{{product.id}}"/>
+
+{% if object in cart.products.all %}
+    <!--<p>In cart</p>-->
+
+In cart <button class="submit">Remove?</button>
+
+{%else%}
+
+Not in Cart <button class="submit" >Add it?</button>
+
+{%endif%}
+
 </form>
 
 

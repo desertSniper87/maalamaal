@@ -29,15 +29,23 @@ def cart_home(request): # why there is no self arg?
     return render(request, "carts/home.html", {})
 
 def cart_update(request):
-    product_id = 1
-    product_obj = Product.objects.get(id=product_id)
+    print("request.POST: ", request.POST)
+    product_id = request.POST.get('product_id')
+    if product_id is not None:
+        try:
+            product_obj = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return redirect("carts:home")
     cart_obj, new_obj = Cart.objects.new_or_get(request)
-    cart_obj.products.add(product_obj)
+    # cart_obj.products.add(product_obj)
     # cart_obj.title
+    print("cart_obj, new_obj: ", cart_obj, new_obj)
     if product_obj in cart_obj.products.all():
         cart_obj.products.remove(product_obj)
     else:
+        print("ADDING")
         cart_obj.products.add(product_obj)
+    cart_obj.save()
 
 
     # return redirect(product_obj.get_absolute_url())

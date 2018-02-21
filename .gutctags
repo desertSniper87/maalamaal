@@ -3,4 +3,5 @@
 --exclude=lib
 --exclude=static_cdn
 --exclude=include
+--exclude=migration
 
