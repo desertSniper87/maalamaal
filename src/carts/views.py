@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author            : desertsniper87 <torshobuet@gmail.com>
 # Date              : 20.02.2018
-# Last Modified Date: 20.02.2018
+# Last Modified Date: 21.02.2018
 from django.shortcuts import render
 
 from .models import Cart
@@ -13,24 +13,25 @@ def cart_create(user=None):
     return cart_obj
 
 def cart_home(request): # why there is no self arg?
-    cart_obj= Cart.objects.new_or_create(request)
-    # cart_id = request.session.get("cart_id", None)
-    # qs = Cart.objects.filter(id=cart_id)
+    cart_obj, new_obj= Cart.objects.new_or_get(request)
 
-    # if qs.count()==1:
-        # print("Cart ID exists")
-        # print(cart_id)
-        # cart_obj = qs.first()
-        # if request.user.is_authenticated == True and cart_obj.user is None:
-            # cart_obj.user = request.user
-            # cart_obj.save()
+    products = cart_obj.products.all() 
+    total = 0
 
-    # else:
-        # print('create new cart')
-        # cart_obj = Cart.objects.new_cart(user=request.user)
-        # # cart_obj = cart_create()
-        # request.session['cart_id']=cart_obj.id
-        # print("Cart_ID: ", request.session.get("cart_id"))
+    for x in products:
+        total += x.price
 
+    print('total: ', total)
+    cart_obj.total = total
+    cart_obj.save()
 
     return render(request, "carts/home.html", {})
+
+def cart_update(request):
+    product_id = 1
+    product_obj = Product.objects.get(id=product_id)
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
+    cart_obj.products.add(product_obj)
+    # cart_obj.title
+
+    return redirect(product_obj.get_absolute_url())
