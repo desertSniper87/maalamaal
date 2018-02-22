@@ -8,33 +8,39 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Product Price</th>
     </tr>
   </thead>
   <tbody>
+
+    {% for product in cart.products.all %}
+
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row">{{forloop.counter}}</th>
+      <td><a href={{product.get_absolute_url}}>{{product.title}}</a><small><a href="#" > Remove?</a></small></td>
+      <td>{{product.price}}</td>
+    </tr>
+
+    {%endfor%}
+
+    <tr>
+      <th scope="row"></th>
+      <td><b>Total Price</b></td>
+      <td><b>{{cart.total}}</b></td>
     </tr>
     <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+      <th scope="row"></th>
+      <td><b>Total w/ tax</b></td>
+      <td><b>{{cart.tax_total}}</b></td>
     </tr>
   </tbody>
+
 </table>    
+
 {% else %}
+
 <p class="lead">Cart is empty.</p>
+
 {% endif %}
 {% endblock content %}

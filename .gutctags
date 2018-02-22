@@ -3,5 +3,8 @@
 --exclude=lib
 --exclude=static_cdn
 --exclude=include
---exclude=migration
+--exclude=src/carts/migrations
+--exclude=src/search/migrations
+--exclude=src/products/migrations
+--exclude=src/tags/migrations
 

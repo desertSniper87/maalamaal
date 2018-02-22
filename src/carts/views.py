@@ -26,7 +26,7 @@ def cart_home(request): # why there is no self arg?
     cart_obj.total = total
     cart_obj.save()
 
-    return render(request, "carts/home.html", {})
+    return render(request, "carts/home.html", {"cart": cart_obj})
 
 def cart_update(request):
     print("request.POST: ", request.POST)

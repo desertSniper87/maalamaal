@@ -51,7 +51,7 @@ class Cart(models.Model):
     user        = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     products    = models.ManyToManyField(Product, blank=True)
     total       = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
-    tax_Total    = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
+    tax_total   = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
     updated     = models.DateTimeField(auto_now=True)
     timestamp   = models.DateTimeField(auto_now_add=True)
 
@@ -81,7 +81,7 @@ def m2m_save_cart_receiver(sender, instance, action, *args, **kwargs):
 m2m_changed.connect(m2m_save_cart_receiver, sender=Cart.products.through)
 
 def pre_save_cart_receiver(sender, instance, *args, **kwargs):
-        instance.taxtotal = 20
+        instance.tax_total = instance.total+20
         # instance.save()
 
 pre_save.connect(pre_save_cart_receiver, sender=Cart)
