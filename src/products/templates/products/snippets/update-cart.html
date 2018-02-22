@@ -1,14 +1,31 @@
 <form method = 'POST' action='{%url "carts:update"%}' class="form-inline my-2 my-lg-0"> {%csrf_token%}
     <input type="hidden" name="product_id" value="{{product.id}}"/>
 
-{% if object in cart.products.all %}
+{% if in_cart %}
 
-In cart <button class="submit">Remove?</button>
+    <button class="btn btn-link btn-sm" type="submit" style="padding:0px; cursor:pointer">Remove?</button>
 
-{%else%}
+{% elif in_card %}
+    {#{% if object in cart.products.all %}#}
 
-Not in Cart <button class="submit" >Add it?</button>
+    <button class="btn btn-warning" type="submit">ADD/REM CART</button>
 
+    {#{%else%}#}
+
+    {#<button class="btn btn-warning" type="submit" >Add it?</button>#}
+
+    {#{%endif%}#}
+{% else %}
+
+    {% if object in cart.products.all %}
+
+    In cart <button class="btn btn-warning" type="submit">Remove?</button>
+
+    {%else%}
+
+    Not in Cart <button class="btn btn-warning" type="submit" >Add it?</button>
+
+    {%endif%}
 {%endif%}
 
 </form>

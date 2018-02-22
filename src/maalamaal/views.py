@@ -5,11 +5,11 @@ from .forms import ContactForm, LoginForm, RegisterForm
 
 def home_page(request):
     context = {
-               "title" : "Home Page",
-               "content" : "Welcome to the web page",
+               "title" : "নীড়পাতা",
+               "content" : "মালামাল ওয়েবসাইটে আপনাকে স্বাগতম",
               }
     if request.user.is_authenticated is True:
-        context["premium_content"] = "YEEEEEAAAAAHHHHHH"
+        context["premium_content"] = "লগইন করা হয়েছে"
 
     return render(request, "home_page.html", context)
 

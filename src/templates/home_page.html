@@ -4,31 +4,34 @@
 <title>নীড়পাতা</title>
 
 {% block base_head %}
-    <link rel='stylesheet' href={% static "css/main.css"%}>
+    <!--<link rel='stylesheet' href={% static "css/main.css"%}>-->
 {% endblock %}
 
 <!doctype html>
 {%block content%}
 <div class='text-center'>
-    <h1>Hello, world!</h1>
+    <h1>মালামাল</h1>
 </div>
 <div> {{title}} </div>
+<img src="{%static 'img/himalaya.jpg'%}" class = 'img-fluid'>
 <div class="row">
-        <img src="{%static 'img/himalaya.jpg'%}" class = 'img-fluid'>
-    <div class = "col">
-        <p>
-            {{ content }}
-        </p>
-    </div>
+        <div class = "col">
+            <p>
+                {{ content }}
+            </p>
+        </div>
 </div>
 {%if premium_content%}
 <div class = 'row'>
     <div class = 'col'>
-        <h1>
-            Premium: 
-        </h1>
-        {{ premium_content}}
+        <h6>
+            লগইন: {{ premium_content}}
+        </h6>
     </div>
 </div>
+{%else%}
+<h6>
+    অনুগ্রহ করে লগইন/রেজিস্টার করুন। 
+</h6>
 {%endif%}
 {%endblock%}
