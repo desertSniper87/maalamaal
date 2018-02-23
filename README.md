@@ -7,7 +7,7 @@ It is a Django/Bootstrap project that I had made while following the [Coding for
 
 `git clone https://github.com/desertSniper87/maalamaal`
 
-2. Create a virtualenv on root
+2. Create a virtualenv on project root
 
 `virtualenv -p python3 .`
 
