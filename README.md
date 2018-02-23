@@ -9,9 +9,11 @@ It is a Django/Bootstrap project that I had made while following the [Coding for
 
 2. Create a virtualenv on project root
 
+`cd maalamaal`
+
 `virtualenv -p python3 .`
 
-`source bin/activate.[bash][fish[zsh]`
+`source bin/activate.[bash][fish][zsh]`
 
 3. Make sure django is installed and run the server
 
