@@ -19,4 +19,10 @@ It is a Django/Bootstrap project that I had made while following the [Coding for
 
 `python manage.py runserver`
 
+### To Do
+
+1. Deploy on Heroku
+
+2. JQuery and Ajax
+
 
