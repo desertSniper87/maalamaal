@@ -4,7 +4,7 @@ from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.urls import reverse
 
-from .utils import unique_slug_generator
+from maalamaal.utils import unique_slug_generator
 
 # Create your models here.
 def get_filename_ext(filepath):
