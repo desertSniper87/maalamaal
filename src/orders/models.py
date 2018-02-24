@@ -6,6 +6,7 @@
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.shortcuts import render, redirect
+import math
 
 from carts.models import Cart
 from maalamaal.utils import unique_order_id_generator
@@ -28,11 +29,11 @@ class Order(models.Model):
         return self.order_id
 
     def update_total(self):
-        cart_total       = self.cart.total
-        shipping_total   = self.shipping_total
-        new_total        = cart_total+  shipping_total
-        # new_total        = cart_total +  shipping_total
-        self.order_total = new_total
+        cart_total          = self.cart.total
+        shipping_total      = self.shipping_total
+        new_total           = math.fsum([cart_total,  shipping_total])
+        new_total_formatted = format(new_total, '.2f')
+        self.order_total    = new_total_formatted
         self.save()
         return new_total
 

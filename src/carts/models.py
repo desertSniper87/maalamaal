@@ -81,7 +81,8 @@ def m2m_save_cart_receiver(sender, instance, action, *args, **kwargs):
 m2m_changed.connect(m2m_save_cart_receiver, sender=Cart.products.through)
 
 def pre_save_cart_receiver(sender, instance, *args, **kwargs):
-        instance.tax_total = instance.total+20
-        # instance.save()
+        print(type(instance.total))
+        # new_tax_total      = instance.total * Decimal(1.15)
+        # instance.tax_total = format(new_tax_total, '.2f') 
 
 pre_save.connect(pre_save_cart_receiver, sender=Cart)
