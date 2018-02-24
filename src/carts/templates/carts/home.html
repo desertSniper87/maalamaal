@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+
 <h1>Cart</h1>
     
 {% if cart.products.exists %}
     
 <table class="table">
+
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -12,6 +14,7 @@
       <th scope="col">Product Price</th>
     </tr>
   </thead>
+
   <tbody>
 
     {% for product in cart.products.all %}
@@ -38,11 +41,18 @@
       <td><b>Total Price</b></td>
       <td><b>{{cart.total}}</b></td>
     </tr>
+
     <tr>
       <th scope="row"></th>
       <td><b>Total w/ tax</b></td>
       <td><b>{{cart.tax_total}}</b></td>
     </tr>
+
+    <tr>
+      <td colspan="2"></td>
+      <td><a href='{%url "carts:checkout"%}' class="btn btn-success">Checkout</a></td>
+    </tr>
+
   </tbody>
 
 </table>    
