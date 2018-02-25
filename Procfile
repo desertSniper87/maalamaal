@@ -1,2 +1,2 @@
-web: gunicorn wsgi:maalamaal
+web: gunicorn app.wsgi
     
