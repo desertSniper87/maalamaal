@@ -29,7 +29,7 @@ Make sure pip has enough privilages.
 
 ### To Do
 
-    ~~1. Deploy on Heroku~~
+~~1. Deploy on Heroku~~
 
 2. JQuery and Ajax
 
