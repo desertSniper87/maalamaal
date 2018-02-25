@@ -5,27 +5,27 @@ It is a Django/Bootstrap project that I had made while following the [Coding for
 
 1. First Clone the repo
 
-`git clone https://github.com/desertSniper87/maalamaal`
+    `git clone https://github.com/desertSniper87/maalamaal`
 
 2. Create a virtualenv on project root
 
-`cd maalamaal`
+    `cd maalamaal`
 
-`virtualenv -p python3 .`
+    `virtualenv -p python3 .`
 
-`source bin/activate.[bash][fish][zsh]`
+    `source bin/activate.[bash][fish][zsh]`
 
 3. Make sure django is installed. You can do this by 
 
-`pip install -r requirements`
+    `pip install -r requirements`
 
 Make sure pip has enough privilages.
 
 4. Run the server
 
-`cd src`
+    `cd src`
 
-`python manage.py runserver`
+    `python manage.py runserver`
 
 ### To Do
 
