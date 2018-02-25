@@ -15,7 +15,13 @@ It is a Django/Bootstrap project that I had made while following the [Coding for
 
 `source bin/activate.[bash][fish][zsh]`
 
-3. Make sure django is installed and run the server
+3. Make sure django is installed. You can do this by 
+
+`pip install -r requirements`
+
+Make sure pip has enough privilages.
+
+4. Run the server
 
 `cd src`
 

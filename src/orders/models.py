@@ -29,7 +29,8 @@ class Order(models.Model):
         return self.order_id
 
     def update_total(self):
-        cart_total          = self.cart.total
+        # cart_total          = self.cart.total
+        cart_total          = self.cart.tax_total
         shipping_total      = self.shipping_total
         new_total           = math.fsum([cart_total,  shipping_total])
         new_total_formatted = format(new_total, '.2f')
