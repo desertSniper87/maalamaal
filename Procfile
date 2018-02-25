@@ -1,2 +1,5 @@
-web: gunicorn app.wsgi
+cd src
+web: gunicorn maalamaal.wsgi
+
+
     
