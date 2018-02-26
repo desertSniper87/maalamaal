@@ -31,8 +31,10 @@ Make sure pip has enough privilages.
 
 ~~1. Deploy on Heroku~~
 
-2. JQuery and Ajax
+2. Make a footer
 
-3. Deploy static files on AWS
+3. JQuery and Ajax
+
+4. Deploy static files on AWS
 
 
