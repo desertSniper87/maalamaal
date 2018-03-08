@@ -9,17 +9,45 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Hello, world!</title>
+    <style type="text/css" media="screen">
+        h1{
+            color: red;
+        }
+    </style>
   </head>
   <body>
+    <h1>Hello, world!</h1>
+    <h1 class='header' id='header-2'>Hello, world!</h1>
     <h1>Hello, world!</h1>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function(){
-            alert("Hello World")
-        })
+        <!--$(document).ready(function(){-->
+            <!--alert("Hello World")-->
+        <!--})-->
+
+        setTimeout(
+            function(){
+                $('body').css("background-color", "green")
+                $('.header').css('color', 'blue')
+            }, 5000
+        )
+
+        setTimeout(
+            function(){
+                $('h1').css("padding", "30px")
+            }, 3000
+        )
+
+        setTimeout(
+            function(){
+                $('h1').css("background-color", "purple")
+                $('#header-2').text("hello again header 2")
+                $('h1:nth-child(3)').text("My young padawan!")
+            }, 2000
+        )
     </script>
 
 
