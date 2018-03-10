@@ -32,12 +32,13 @@ h1{
         <div class="container">
           <div class="row">
             <div class="col mx-auto">
-              
-            
           
-        <form action="new-content" method="POST" accept-charset="utf-8" action="/some/url/link">
+        <form class="content-form" method="POST" accept-charset="utf-8" action="">
           <textarea name="content" id="" class='form-control'></textarea>
+          <p class="formDataSubmitted"> </p>
           <input type="submit" value="Save" name="" id=""/>
+            
+          </div>
 
           
         </form>
@@ -83,6 +84,18 @@ Michael palin tell thi summat for nowt aye tintintin breadcake. God’s own coun
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript">
           $(document).ready(function(){
+
+
+            var $contentForm = $('.content-form');
+            $contentForm.submit(function(event){
+              event.preventDefault();
+              console.log($contentForm.serialize());
+              var textAreaContent = $(this).find('textarea');
+              console.log(textAreaContent.val);
+              $('.formDataSubmitted').text(textAreaContent.val());
+
+
+
             var $descriptionitems = $('.description');
 
             $.each($descriptionitems, function(index, obj){
@@ -100,6 +113,15 @@ Michael palin tell thi summat for nowt aye tintintin breadcake. God’s own coun
                 console.log($this);
                 console.log(event);
                 window.location.href = 'http://www.google.com/';
+
+
+                // #####################
+                // #####################
+                
+
+                })
+
+
               })
 
             })
