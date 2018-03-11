@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 # Author            : desertsniper87 <torshobuet@gmail.com>
 # Date              : 20.02.2018
-# Last Modified Date: 21.02.2018
+# Last Modified Date: 11.03.2018
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 from products.models import Product
 from .models import Cart
@@ -43,13 +44,23 @@ def cart_update(request):
     print("cart_obj, new_obj: ", cart_obj, new_obj)
     if product_obj in cart_obj.products.all():
         cart_obj.products.remove(product_obj)
+        added = False
     else:
         print("ADDING")
         cart_obj.products.add(product_obj)
+        added = True
     cart_obj.save()
 
-    request.session['cart_items'] = cart_obj.products.count()
+    if request.is_ajax():
+        print("Request is ajax")
+        json_data = {
+                     "added": added,
+                     "removed": not added,
+                    }
+        # print("json_data: ", json_data)
+        return JsonResponse(json_data)
 
+    request.session['cart_items'] = cart_obj.products.count()
 
     # return redirect(product_obj.get_absolute_url())
     return redirect("carts:home")

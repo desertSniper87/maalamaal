@@ -37,23 +37,37 @@
                   console.log("Hello there!");
 
                   var $this_form = $(this)
-                  var action_endpoint;
-                  var http_method;
-                  var form_data;
+                  var action_endpoint = $this_form.attr("action");
+                  var http_method = $this_form.attr("method");
+                  var form_data = $this_form.serialize();
 
                   console.log($this_form.attr("action"), $this_form.attr("method"));
                   $.ajax({
-                    url: action_endpoint
-                    method: http_method;
-                    data: form_data;
-                  })
-                  success: function(data){
+                    url: action_endpoint,
+                    method: http_method,
+                    data: form_data ,
 
-                  },
-                  error: function(error_data){
-                    console.log("Error: ");
-                    console.log(error_data);
-                  }
+                    success: function(data){
+                      console.log("Top of the morning to you!");
+                      console.log(data);
+                      console.log("data.added: ", data.added);
+                      console.log("data.removed: ", data.removed);
+                      var submit_span = $this_form.find(".submit-span");
+                      console.log("submit_span.html(): ", submit_span.html());
+                      if (data.added){
+                        submit_span.html("In cart <button class="btn btn-warning" type="submit">Remove?</button>");
+                      } else {
+                        submit_span.html();
+                      }
+
+                      
+
+                    },
+                    error: function(error_data){
+                      console.log("Error: ");
+                      console.log(error_data);
+                    }
+                  })
 
 
     
