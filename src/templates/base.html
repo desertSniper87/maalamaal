@@ -1,23 +1,65 @@
 {% load static %}
+
 <!doctype html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>
-            মালামাল
-        </title>
-        {% include 'base/css.html' %}
-        {% block base_head %}{% endblock %}
-    </head>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      মালামাল
+    </title>
 
-    <body>
+    {% include 'base/css.html' %}
+    {% block base_head %}{% endblock %}
+
+  </head>
+
+  <body>
+
     {%include "base/navbar.html" with brand_name="মালামাল"%}
+
     <div class="container">
-    {% block content %}
+
+      {% block content %}
+
     </div>
+
     {% endblock %}
     {% include 'base/js.html'%}
-    </body>
+
+    <script charset="utf-8">
+      $(document).ready(function(event){
+                var $product_form = $(".form-product-ajax");
+
+                $product_form.submit(function(event) {
+                  event.preventDefault();
+                  console.log("Hello there!");
+
+                  var $this_form = $(this)
+                  var action_endpoint;
+                  var http_method;
+                  var form_data;
+
+                  console.log($this_form.attr("action"), $this_form.attr("method"));
+                  $.ajax({
+                    url: action_endpoint
+                    method: http_method;
+                    data: form_data;
+                  })
+                  success: function(data){
+
+                  },
+                  error: function(error_data){
+                    console.log("Error: ");
+                    console.log(error_data);
+                  }
+
+
+    
+                })
+            })
+    </script>
+
+  </body>
 </html>
