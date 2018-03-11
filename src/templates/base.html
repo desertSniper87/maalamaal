@@ -36,7 +36,7 @@
                   event.preventDefault();
                   console.log("Hello there!");
 
-                  var $this_form = $(this)
+                  var $this_form = $(this);
                   var action_endpoint = $this_form.attr("action");
                   var http_method = $this_form.attr("method");
                   var form_data = $this_form.serialize();
@@ -55,24 +55,18 @@
                       var submit_span = $this_form.find(".submit-span");
                       console.log("submit_span.html(): ", submit_span.html());
                       if (data.added){
-                        submit_span.html("In cart <button class="btn btn-warning" type="submit">Remove?</button>");
+                        submit_span.html("In cart <button class='btn btn-warning' type='submit'>Remove?</button>");
                       } else {
-                        submit_span.html();
+                        submit_span.html("Not in Cart <button class='btn btn-warning' type='submit' >Add it?</button>");
                       }
-
-                      
-
                     },
                     error: function(error_data){
                       console.log("Error: ");
                       console.log(error_data);
-                    }
-                  })
-
-
-    
-                })
-            })
+                    },
+                  });
+                });
+            });
     </script>
 
   </body>

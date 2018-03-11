@@ -1,21 +1,22 @@
 <form class='form-product-ajax' method = 'POST' action='{%url "carts:update"%}' class="form-inline my-2 my-lg-0"> {%csrf_token%}
   <input type="hidden" name="product_id" value="{{product.id}}"/>
 
-  {% if in_cart %}
+  {#{% if in_cart %}#}
 
-  <button class="btn btn-link btn-sm" type="submit" style="padding:0px; cursor:pointer">Remove?</button>
+  {#<button class="btn btn-link btn-sm" type="submit" style="padding:0px; cursor:pointer">Remove?</button>#}
 
-  {% elif in_card %}
-  {#{% if object in cart.products.all %}#}
+  {#{% elif in_card %}#}
 
-  <button class="btn btn-warning" type="submit">ADD/REM CART</button>
+    {#{% if object in cart.products.all %}#}
 
-  {#{%else%}#}
+    {#<button class="btn btn-warning" type="submit">ADD/REM CART</button>#}
 
-  {#<button class="btn btn-warning" type="submit" >Add it?</button>#}
+    {#{%else%}#}
 
-  {#{%endif%}#}
-  {% else %}
+    {#<button class="btn btn-warning" type="submit" >Add it?</button>#}
+
+    {#{%endif%}#}
+  {#{% else %}#}
 
   <span class="submit-span">
 
@@ -31,7 +32,7 @@
 
   </span>
 
-  {%endif%}
+  {#{%endif%}#}
 
 </form>
 
