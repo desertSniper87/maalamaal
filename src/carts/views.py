@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author            : desertsniper87 <torshobuet@gmail.com>
 # Date              : 20.02.2018
-# Last Modified Date: 11.03.2018
+# Last Modified Date: 12.03.2018
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
@@ -56,8 +56,11 @@ def cart_update(request):
         json_data = {
                      "added": added,
                      "removed": not added,
+                     "cartItemCount" : cart_obj.products.count(),
                     }
         # print("json_data: ", json_data)
+        print("cart_obj.products.count: ", cart_obj.products.count())
+        request.session['cart_items'] = cart_obj.products.count()
         return JsonResponse(json_data)
 
     request.session['cart_items'] = cart_obj.products.count()

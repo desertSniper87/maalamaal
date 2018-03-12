@@ -1,4 +1,4 @@
-<form class='form-product-ajax' method = 'POST' action='{%url "carts:update"%}' class="form-inline my-2 my-lg-0"> {%csrf_token%}
+<form class='form-product-ajax' method = 'POST' action='{%url "carts:update"%}' data-endpoint='{% url "carts:update" %}' class="form-inline my-2 my-lg-0"> {%csrf_token%}
   <input type="hidden" name="product_id" value="{{product.id}}"/>
 
   {% if in_cart %}
@@ -9,7 +9,7 @@
 
   <span class="submit-span">
     {#{{cart.products.all}}#}
-    {#{{object}}#}
+    {#{{product}}#}
 
     {% if product in cart.products.all %}
 
@@ -20,7 +20,11 @@
     <button class="btn btn-warning" type="submit" >Buy</button>
 
     {%endif%}
+  </span>
   {% else %}
+  {#{{object}}#}
+  <span class="submit-span">
+    {#{{cart.products.all}}#}
 
 
       {% if object in cart.products.all %}
@@ -32,8 +36,8 @@
   Not in Cart <button class="btn btn-warning" type="submit" >Add it?</button>
 
       {%endif%}
-
   </span>
+
 
   {%endif%}
 

@@ -52,12 +52,24 @@
                       console.log(data);
                       console.log("data.added: ", data.added);
                       console.log("data.removed: ", data.removed);
+
                       var submit_span = $this_form.find(".submit-span");
                       console.log("submit_span.html(): ", submit_span.html());
+
                       if (data.added){
                         submit_span.html("In cart <button class='btn btn-warning' type='submit'>Remove?</button>");
                       } else {
                         submit_span.html("Not in Cart <button class='btn btn-warning' type='submit' >Add it?</button>");
+                      }
+
+                      var $navBarCount = $('.navbar-cart-count');
+                      $navBarCount.text(data.cartItemCount);
+
+                      var currentPath = window.location.href;
+                      console.log(currentPath);
+
+                      if (currentPath.indexOf("cart") != -1){
+                        refreshCart();
                       }
                     },
                     error: function(error_data){
@@ -65,8 +77,12 @@
                       console.log(error_data);
                     },
                   });
+
                 });
             });
+      function refreshCart(){
+        console.log("In current cart");
+      }
     </script>
 
   </body>
