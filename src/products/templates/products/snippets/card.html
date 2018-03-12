@@ -11,8 +11,12 @@
   <div class="card-block">
       <h4 class="card-title">{{ instance.title }}</h4>
       <p class="card-text">{{instance.description|truncatechars:140}}</p>
-    <a href={{ instance.get_absolute_url }} class="btn btn-primary">Go</a>
-    <!--<a href={% url 'products:detail' slug=instance.slug %} class="btn btn-warning">Url link</a>-->
+    <div class="btn-group">
+    <a href={{ instance.get_absolute_url }} class="btn btn-primary">Details</a>
+
      {%include 'products/snippets/update-cart.html' with product=instance cart=cart in_card=True%}
+
+    </div>
+
   </div>
 </div>
