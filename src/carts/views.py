@@ -11,6 +11,20 @@ from .models import Cart
 from orders.models import Order
 
 
+def cart_detail_api_view(request):
+    cart_obj, new_obj= Cart.objects.new_or_get(request)
+    products = [ {"name" : x.name, "price" : x.price}\
+            for x in cart_obj.products.all() ]
+    print("products: ", products)
+    cart_data = {
+                 "products"  : products,
+                 "total"     : cart_obj.total,
+                 "tax_total" : cart_obj.tax_total
+                }
+
+    return JsonResponse(cart_data)
+
+
 def cart_create(user=None):
     cart_obj = Cart.objects.get(user=None)
     return cart_obj

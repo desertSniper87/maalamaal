@@ -9,6 +9,7 @@ from django .views.generic import TemplateView
 
 from .views import hello_world, home_page, about_page, contact_page, login_page, register_page
 # from search.views import SearchProductView
+from carts.views import cart_detail_api_view
 
 products_app_name = apps.get_app_config('products').verbose_name
 search_app_name = apps.get_app_config('search').verbose_name
@@ -24,6 +25,8 @@ urlpatterns = [
     url(r'^contact/$', contact_page, name='contact'),
     url(r'^login/$', login_page, name='login'),
     url(r'^register/$', register_page, name='register'),
+
+    url(r'^api/cart/$', cart_detail_api_view, name='api-cart'),
 
     # url(r'^search/', SearchProductView.as_view(), namespace='search'),
     url(r'^search/', include(('search.urls', search_app_name), namespace='search')),

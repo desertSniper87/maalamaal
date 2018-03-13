@@ -72,9 +72,9 @@
                         refreshCart();
                       }
                     },
-                    error: function(error_data){
+                    error: function(errorData){
                       console.log("Error: ");
-                      console.log(error_data);
+                      console.log(errorData);
                     },
                   });
 
@@ -82,6 +82,25 @@
             });
       function refreshCart(){
         console.log("In current cart");
+        var $cartTable = $('.cart-table');
+        var cartTBody = $cartTable.find('.cart-table-body');
+        cartTBody.html('<h1>Work in progress</h1>');
+        
+        var refreshCartUrl = '/api/cart/';
+        var refreshCartMethod = 'GET';
+        var data;
+        $.ajax({
+          url: refreshCartUrl,
+          method: refreshCartMethod,
+          data: data,
+          success: function(data){
+            console.log("Success");
+          },
+          error: function(errorData){
+            console.log("Error: ");
+            console.log(errorData);
+          },
+        })
       }
     </script>
 
