@@ -19,7 +19,7 @@
 
     {% for product in cart.products.all %}
 
-    <tr>
+    <tr class = 'cart-product'>
       <th scope="row">{{forloop.counter}}</th>
       <td>
           <a href={{product.get_absolute_url}}>
@@ -36,16 +36,20 @@
 
     {%endfor%}
 
+
     <tr>
       <th scope="row"></th>
       <td><b>Total Price</b></td>
-      <td><b>{{cart.total}}</b></td>
+
+        <td class="cart-total"><b>{{cart.total}}</b></td>
     </tr>
 
     <tr>
       <th scope="row"></th>
       <td><b>Total w/ tax</b></td>
-      <td><b>{{cart.tax_total}}</b></td>
+      <td class="cart-tax-total">
+          <b>{{cart.tax_total}}</b>
+      </td>
     </tr>
 
     <tr>
