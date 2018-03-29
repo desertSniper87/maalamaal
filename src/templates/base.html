@@ -86,9 +86,9 @@
         var cartTBody = $cartTable.find('.cart-table-body');
         //cartTBody.html('<h1>Work in progress</h1>');
 
-        var productRows = cartTBody.find('cart-products')
-        
+        var productRows = cartTBody.find('cart-product')
         var refreshCartUrl = '/api/cart/';
+        
         var refreshCartMethod = 'GET';
         var data;
         $.ajax({
@@ -97,8 +97,16 @@
           data: data,
           success: function(data){
             console.log("Success"); 
-            console.log("data: ", data)
-            productRows.html("<tr><td colspan=3>Coming this april</td></tr>")
+            console.log("data: ", data);
+            if (data.products.length > 0){
+              productRows.html("");
+              cartTBody.prepend("<tr><td colspan=3>Coming this april</td></tr>");
+              cartTBody.find(".cart-total").text(data.total);
+              cartTBody.find(".cart-tax-total").text(data.tax_total)
+            } else {
+              window.location.href = currentUrl
+            }
+        
           },
           error: function(errorData){
             console.log("Error: ");
