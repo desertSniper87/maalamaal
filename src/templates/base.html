@@ -86,9 +86,8 @@
         var cartTBody = $cartTable.find('.cart-table-body');
         //cartTBody.html('<h1>Work in progress</h1>');
 
-        var productRow = cartTBody.find('.cart-product');
+        var productRows = cartTBody.find('cart-products')
         
-        var currentUrl = window.location.href;
         var refreshCartUrl = '/api/cart/';
         var refreshCartMethod = 'GET';
         var data;
@@ -98,22 +97,13 @@
           data: data,
           success: function(data){
             console.log("Success"); 
-            console.log("data: ", data);
-            //console.log("data.products.length: ", data.products.length);
-            console.log("data.total: ", data.total);
-            console.log("data.tax_total: ", data.tax_total);
-            if (data.products.length > 0){
-              productRow.html("<tr><td colspan=3>Coming this april</td></tr>");
-              cartTBody.find('.cart-total').text(data.tax_total);
-              cartTBody.find('.cart-tax-total').text(data.total);
-            } else {
-              window.location.href = currentUrl;
-            }
+            console.log("data: ", data)
+            productRows.html("<tr><td colspan=3>Coming this april</td></tr>")
           },
           error: function(errorData){
             console.log("Error: ");
             console.log(errorData);
-          }
+          },
         })
       }
     </script>
