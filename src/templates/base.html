@@ -93,23 +93,35 @@
         var refreshCartMethod = 'GET';
         var data;
         $.ajax({
+
           url: refreshCartUrl,
           method: refreshCartMethod,
           data: data,
+
           success: function(data){
+
+            var hiddenCartItemRemoveForm = $('.cart-item-remove-product')
             console.log("Success"); 
             console.log("data: ", data);
+
             if (data.products.length > 0){
+
               i = data.products.length;
               productRows.html(" ");
+
               $.each(data.products, function(index, value){
+                var newCartItemRemoveForm = hiddenCartItemRemoveForm.clone();
+                newCartItemRemoveForm.css("display", "block");
+                newCartItemRemoveForm.find(".cart-item-remove-product").val(value.id);
+                console.log("newCartItemRemoveForm.html(): ", newCartItemRemoveForm.html())
                 cartTBody.prepend("<tr> \
                                     <th scope=\"row\">"+
                                       i +
                                     "</th> \
                                       <td> \
                                         <a href='"+ value.url + "'>"+ 
-                                      value.name +
+                                          value.name +
+                                          newCartItemRemoveForm.html()+
                                         "</a> \
                                       </td> \
                                       <td>"+

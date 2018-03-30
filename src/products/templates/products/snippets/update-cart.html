@@ -1,9 +1,14 @@
-<form class='form-product-ajax' method = 'POST' action='{%url "carts:update"%}' data-endpoint='{% url "carts:update" %}' class="form-inline my-2 my-lg-0"> {%csrf_token%}
+<form class='form-product-ajax form-inline my-2 my-lg-0' method = 'POST' action='{%url "carts:update"%}' data-endpoint='{% url "carts:update" %}' > {%csrf_token%}
   <input type="hidden" name="product_id" value="{{product.id}}"/>
 
   {% if in_cart %}
 
-  <button class="btn btn-link btn-sm" type="submit" style="padding:0px; cursor:pointer">Remove?</button>
+  {#<button class="btn btn-link btn-sm" type="submit" style="padding:0px; cursor:pointer">Remove?</button>#}
+  <div class="cart-item-remove-product" style=' '>       
+
+  {% include 'carts/snippets/remove-product.html' with product_id=product.id%}
+    
+  </div>
 
   {% elif in_card %}
 
