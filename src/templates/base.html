@@ -86,8 +86,9 @@
         var cartTBody = $cartTable.find('.cart-table-body');
         //cartTBody.html('<h1>Work in progress</h1>');
 
-        var productRows = cartTBody.find('cart-product')
+        var productRows = cartTBody.find('.cart-product')
         var refreshCartUrl = '/api/cart/';
+        var currentUrl = window.location.href
         
         var refreshCartMethod = 'GET';
         var data;
@@ -99,20 +100,23 @@
             console.log("Success"); 
             console.log("data: ", data);
             if (data.products.length > 0){
-              productRows.html("");
-              i = 1;
+              i = data.products.length;
+              productRows.html(" ");
               $.each(data.products, function(index, value){
-                cartTBody.prepend("<tr>"+
-                                    "<th scope=\"row\">"+
+                cartTBody.prepend("<tr> \
+                                    <th scope=\"row\">"+
                                       i +
-                                    "<td colspan>"+
+                                    "</th> \
+                                      <td> \
+                                        <a href='"+ value.url + "'>"+ 
                                       value.name +
-                                    "</td>"+
-                                    "<td>"+
-                                      value.price+
-                                    "</td>"+
-                                  "</tr>");
-                i++;
+                                        "</a> \
+                                      </td> \
+                                      <td>"+
+                                        value.price +
+                                      "</td> \
+                                  </tr>");
+                i--;
               })
               cartTBody.find(".cart-total").text(data.total);
               cartTBody.find(".cart-tax-total").text(data.tax_total)

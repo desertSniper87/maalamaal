@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Author            : desertsniper87 <torshobuet@gmail.com>
 # Date              : 20.02.2018
-# Last Modified Date: 12.03.2018
+# Last Modified Date: 30.03.2018
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
@@ -13,8 +13,13 @@ from orders.models import Order
 
 def cart_detail_api_view(request):
     cart_obj, new_obj= Cart.objects.new_or_get(request)
-    products = [ {"name" : x.name, "price" : x.price}\
-            for x in cart_obj.products.all() ]
+    products = [{
+                 "id"    : x.id, 
+                 "name"  : x.name,
+                 "price" : x.price,
+                 "url"   : x.get_absolute_url()
+                }\
+            for x in cart_obj.products.all()]
     print("products: ", products)
     cart_data = {
                  "products"  : products,
