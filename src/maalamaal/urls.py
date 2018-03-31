@@ -17,6 +17,7 @@ carts_app_name = apps.get_app_config('carts').verbose_name
 
 urlpatterns = [
     url(r'^hello/$', hello_world),
+    url(r'^googleb861e71a1435ed1e.html/$', TemplateView.as_view(template_name='googleb861e71a1435ed1e.html')),
 
     url(r'^$', home_page, name='home'),
     # url(r'^bootstrap/$', TemplateView.as_view(template_name='bootstrap/example.html')),
