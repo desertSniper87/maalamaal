@@ -100,41 +100,47 @@
 
           success: function(data){
 
-            var hiddenCartItemRemoveForm = $('.cart-item-remove-product')
-            console.log("Success"); 
-            console.log("data: ", data);
+            location.reload();
+            //var hiddenCartItemRemoveForm = $('.form-product-ajax')
+            //console.log("Success"); 
+            //console.log("data: ", data);
 
-            if (data.products.length > 0){
+            //if (data.products.length > 0){
 
-              i = data.products.length;
-              productRows.html(" ");
+              //i = data.products.length;
+              //productRows.html(" ");
 
-              $.each(data.products, function(index, value){
-                var newCartItemRemoveForm = hiddenCartItemRemoveForm.clone();
-                newCartItemRemoveForm.css("display", "block");
-                newCartItemRemoveForm.find(".cart-item-remove-product").val(value.id);
-                console.log("newCartItemRemoveForm.html(): ", newCartItemRemoveForm.html())
-                cartTBody.prepend("<tr> \
-                                    <th scope=\"row\">"+
-                                      i +
-                                    "</th> \
-                                      <td> \
-                                        <a href='"+ value.url + "'>"+ 
-                                          value.name +
-                                          newCartItemRemoveForm.html()+
-                                        "</a> \
-                                      </td> \
-                                      <td>"+
-                                        value.price +
-                                      "</td> \
-                                  </tr>");
-                i--;
-              })
-              cartTBody.find(".cart-total").text(data.total);
-              cartTBody.find(".cart-tax-total").text(data.tax_total)
-            } else {
-              window.location.href = currentUrl
-            }
+              //$.each(data.products, function(index, value){
+                //console.log("index: ", index);
+                //console.log("value: ", value);
+                ////var newCartItemRemoveForm = hiddenCartItemRemoveForm.clone();
+                ////newCartItemRemoveForm.css("display", "block");
+                //hiddenCartItemRemoveForm.find(".cart-item-product-id").val(value.id);
+                //hiddenCartItemRemoveForm.val(value.id);
+                //console.log("hiddenCartItemRemoveForm.html(): ", hiddenCartItemRemoveForm.html())
+                //cartTBody.prepend("<tr> \
+                                    //<th scope=\"row\">"+
+                                      //i +
+                                    //"</th> \
+                                      //<td> \
+                                        //<a href='"+ value.url + "'>"+ 
+                                          //value.name +
+                                        //"</a> <div>"+
+                                            ////newCartItemRemoveForm.html()+
+                                            //hiddenCartItemRemoveForm.html()+
+                                        //"</div>"+
+                                      //"</td> \
+                                      //<td>"+
+                                        //value.price +
+                                      //"</td> \
+                                  //</tr>");
+                //i--;
+              //})
+              //cartTBody.find(".cart-total").text(data.total);
+              //cartTBody.find(".cart-tax-total").text(data.tax_total)
+            //} else {
+              //window.location.href = currentUrl
+            //}
         
           },
           error: function(errorData){
