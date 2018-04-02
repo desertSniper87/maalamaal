@@ -29,58 +29,74 @@
     {% include 'base/js.html'%}
 
     <script charset="utf-8">
-      $(document).ready(function(event){
-                var $product_form = $(".form-product-ajax");
+      $(document).ready(function(){
 
-                $product_form.submit(function(event) {
-                  event.preventDefault();
-                  console.log("Hello there!");
+        /*Auto Search*/
+        var searchForm = $(".search-form");
+        var searchInput = searchForm.find("[name='q']");
+        var typingTimer;
+        var typingInterval = 500;
 
-                  var $this_form = $(this);
-                  var action_endpoint = $this_form.attr("action");
-                  var http_method = $this_form.attr("method");
-                  var form_data = $this_form.serialize();
+        searchInput.keyup(function(event){
+          console.log(searchInput.find("name='q'"));
+          console.log(searchForm.find("name='q'"));
+          var query = searchInput.val();
+          window.location.href = '/search/href/q=' + query;
+        })
 
-                  console.log($this_form.attr("action"), $this_form.attr("method"));
-                  $.ajax({
-                    url: action_endpoint,
-                    method: http_method,
-                    data: form_data ,
+        
+        /*Cart Add Products*/
+        var $product_form = $(".form-product-ajax");
 
-                    success: function(data){
-                      console.log("Top of the morning to you!");
-                      console.log(data);
-                      console.log("data.added: ", data.added);
-                      console.log("data.removed: ", data.removed);
+        $product_form.submit(function(event) {
+          event.preventDefault();
+          console.log("Hello there!");
 
-                      var submit_span = $this_form.find(".submit-span");
-                      console.log("submit_span.html(): ", submit_span.html());
+          var $this_form = $(this);
+          var action_endpoint = $this_form.attr("action");
+          var http_method = $this_form.attr("method");
+          var form_data = $this_form.serialize();
 
-                      if (data.added){
-                        submit_span.html("In cart <button class='btn btn-warning' type='submit'>Remove?</button>");
-                      } else {
-                        submit_span.html("Not in Cart <button class='btn btn-warning' type='submit' >Add it?</button>");
-                      }
+          console.log($this_form.attr("action"), $this_form.attr("method"));
+          $.ajax({
+            url: action_endpoint,
+            method: http_method,
+            data: form_data ,
 
-                      var $navBarCount = $('.navbar-cart-count');
-                      $navBarCount.text(data.cartItemCount);
+            success: function(data){
+              console.log("Top of the morning to you!");
+              console.log(data);
+              console.log("data.added: ", data.added);
+              console.log("data.removed: ", data.removed);
 
-                      var currentPath = window.location.href;
-                      console.log(currentPath);
+              var submit_span = $this_form.find(".submit-span");
+              console.log("submit_span.html(): ", submit_span.html());
 
-                      if (currentPath.indexOf("cart") != -1){
-                        refreshCart();
-                      }
-                    },
-                    error: function(errorData){
-                      console.log("Error: ");
-                      console.log(errorData);
-                    },
-                  });
+              if (data.added){
+                submit_span.html("In cart <button class='btn btn-warning' type='submit'>Remove?</button>");
+              } else {
+                submit_span.html("Not in Cart <button class='btn btn-warning' type='submit' >Add it?</button>");
+              }
 
-                });
-            });
-      function refreshCart(){
+              var $navBarCount = $('.navbar-cart-count');
+              $navBarCount.text(data.cartItemCount);
+
+              var currentPath = window.location.href;
+              console.log(currentPath);
+
+              if (currentPath.indexOf("cart") != -1){
+                refreshCart();
+              }
+            },
+            error: function(errorData){
+              console.log("Error: ");
+              console.log(errorData);
+            },
+          });
+
+        });
+      });
+      function refreshCart(event){
         console.log("In current cart");
         var $cartTable = $('.cart-table');
         var cartTBody = $cartTable.find('.cart-table-body');
@@ -99,57 +115,72 @@
           data: data,
 
           success: function(data){
-
+            /*
+             *fallback code
+             */
             location.reload();
-            //var hiddenCartItemRemoveForm = $('.form-product-ajax')
-            //console.log("Success"); 
-            //console.log("data: ", data);
 
-            //if (data.products.length > 0){
+            /*
+             *
+             *Start of jquery code
+             *
+             */
 
-              //i = data.products.length;
-              //productRows.html(" ");
+            /*var hiddenCartItemRemoveForm = $('.form-product-ajax')*/
+            /*console.log("Success"); */
+            /*console.log("data: ", data);*/
 
-              //$.each(data.products, function(index, value){
-                //console.log("index: ", index);
-                //console.log("value: ", value);
-                ////var newCartItemRemoveForm = hiddenCartItemRemoveForm.clone();
-                ////newCartItemRemoveForm.css("display", "block");
-                //hiddenCartItemRemoveForm.find(".cart-item-product-id").val(value.id);
-                //hiddenCartItemRemoveForm.val(value.id);
-                //console.log("hiddenCartItemRemoveForm.html(): ", hiddenCartItemRemoveForm.html())
-                //cartTBody.prepend("<tr> \
-                                    //<th scope=\"row\">"+
-                                      //i +
-                                    //"</th> \
-                                      //<td> \
-                                        //<a href='"+ value.url + "'>"+ 
-                                          //value.name +
-                                        //"</a> <div>"+
-                                            ////newCartItemRemoveForm.html()+
-                                            //hiddenCartItemRemoveForm.html()+
-                                        //"</div>"+
-                                      //"</td> \
-                                      //<td>"+
-                                        //value.price +
-                                      //"</td> \
-                                  //</tr>");
-                //i--;
-              //})
-              //cartTBody.find(".cart-total").text(data.total);
-              //cartTBody.find(".cart-tax-total").text(data.tax_total)
-            //} else {
-              //window.location.href = currentUrl
-            //}
+            /*if (data.products.length > 0){*/
+
+              /*i = data.products.length;*/
+              /*productRows.html(" ");*/
+
+              /*$.each(data.products, function(index, value){*/
+                /*console.log("index: ", index);*/
+                /*console.log("value: ", value);*/
+                /*//var newCartItemRemoveForm = hiddenCartItemRemoveForm.clone();*/
+                /*//newCartItemRemoveForm.css("display", "block");*/
+                /*hiddenCartItemRemoveForm.find(".cart-item-product-id").val(value.id);*/
+                /*hiddenCartItemRemoveForm.val(value.id);*/
+                /*console.log("hiddenCartItemRemoveForm.html(): ", hiddenCartItemRemoveForm.html())*/
+                /*cartTBody.prepend("<tr> \*/
+                                    /*<th scope=\"row\">"+*/
+                                      /*i +*/
+                                    /*"</th> \*/
+                                      /*<td> \*/
+                                        /*<a href='"+ value.url + "'>"+ */
+                                          /*value.name +*/
+                                        /*"</a> <div>"+*/
+                                            /*//newCartItemRemoveForm.html()+*/
+                                            /*hiddenCartItemRemoveForm.html()+*/
+                                        /*"</div>"+*/
+                                      /*"</td> \*/
+                                      /*<td>"+*/
+                                        /*value.price +*/
+                                      /*"</td> \*/
+                                  /*</tr>");*/
+                /*i--;*/
+              /*})*/
+              /*cartTBody.find(".cart-total").text(data.total);*/
+              /*cartTBody.find(".cart-tax-total").text(data.tax_total)*/
+            /*} else {*/
+              /*window.location.href = currentUrl*/
+            }
         
-          },
-          error: function(errorData){
-            console.log("Error: ");
-            console.log(errorData);
-          },
+          /*},*/
+          /*error: function(errorData){*/
+            /*console.log("Error: ");*/
+            /*console.log(errorData);*/
+          /*},*/
         })
       }
+      
+       /*
+        *End of jquery code
+        */
+       
     </script>
 
   </body>
 </html>
+<!-- vim: set ft=javascript: -->
