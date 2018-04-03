@@ -33,16 +33,28 @@
 
         /*Auto Search*/
         var searchForm = $(".search-form");
+        console.log("searchForm.html(): ", searchForm.html());
         var searchInput = searchForm.find("[name='q']");
+        console.log("searchInput: ", searchInput);
         var typingTimer;
-        var typingInterval = 500;
+        var typingInterval = 1000;
+        var searchBtn = searchForm.find("[type='submit']");
 
         searchInput.keyup(function(event){
-          console.log(searchInput.find("name='q'"));
-          console.log(searchForm.find("name='q'"));
-          var query = searchInput.val();
-          window.location.href = '/search/href/q=' + query;
+          clearTimeout(typingTimer); 
+          typingTimer = setTimeout(performSearch, typingInterval)
         })
+
+        searchInput.keydown(function(event){
+          clearTimeout(typingTimer); 
+        })
+
+        function performSearch(){
+          searchBtn.addClass("disabled");
+          searchBtn.html("<i class='fa fa-spin fa-spinner'></i> Searching...");
+          var query = searchInput.val();
+          window.location.href = '/search/?q=' + query;
+        }
 
         
         /*Cart Add Products*/
