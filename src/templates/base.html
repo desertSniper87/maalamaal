@@ -101,6 +101,11 @@
               }
             },
             error: function(errorData){
+              $.alert({
+                title: "Oops!",
+                content: "An error occured",
+                theme: "modern",
+              });
               console.log("Error: ");
               console.log(errorData);
             },

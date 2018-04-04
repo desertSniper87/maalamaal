@@ -80,7 +80,8 @@ def cart_update(request):
         # print("json_data: ", json_data)
         print("cart_obj.products.count: ", cart_obj.products.count())
         request.session['cart_items'] = cart_obj.products.count()
-        return JsonResponse(json_data)
+        return JsonResponse(json_data, status=200)
+        # return JsonResponse({"message": "Error 400"}, status_code=400)
 
     request.session['cart_items'] = cart_obj.products.count()
 
