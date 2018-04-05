@@ -18,11 +18,8 @@
                 {{ content }}
                 </p>
                 <div class = 'col-sm-6 col-12'>
-                    <form method = 'POST'> {% csrf_token %}
+                  <form class='contact-form' action='{%url "contact"%}' method = 'POST'> {% csrf_token %}
                         {{ form }}
-                        <!--<input type='text' class = 'form-control' placeholder='Name' value = ''>-->
-                        <!--<input type='text' class = 'form-control' placeholder='Email' value = ''>-->
-                        <!--<input type='text' class = 'form-control' placeholder='Content' value = ''>-->
                         <button type = 'submit' class = 'btn btn-default'>Submit</button>
                     </form>
                 </div>
