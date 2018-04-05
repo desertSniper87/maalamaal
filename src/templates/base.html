@@ -30,6 +30,46 @@
 
     <script charset="utf-8">
       $(document).ready(function(){
+        /*
+         *Ajaxify contact form
+         */
+
+        var $contactForm = $(".contact-form");
+        var contactFormMethod = $contactForm.attr("method");
+        var contactFormEndpoint = $contactForm.attr("action");
+        $contactForm.submit(function(event){
+          event.preventDefault();
+
+          var contactFormData = $contactForm.serialize();
+          var $thisContactForm = $(".contact-from");
+
+          $.ajax({
+            method: contactFormMethod,
+            url: contactFormEndpoint,
+            data: contactFormData,
+
+            success: function(data){
+              $thisContactForm.reset();
+              $.alert({
+                title: "Success!",
+                content: "Thank you for your submission.",
+                theme: "modern",
+              });
+
+            },
+
+            error: function(error) {
+              $.alert({
+                title: "Oops!",
+                content: "An error occured",
+                theme: "modern",
+              });
+              console.log("Error: ");
+              console.log(errorData);
+            }
+
+          })
+        })
 
         /*Auto Search*/
         var searchForm = $(".search-form");

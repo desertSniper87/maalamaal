@@ -7,7 +7,8 @@ from django.conf.urls.static import static
 from django.apps import apps
 from django .views.generic import TemplateView
 
-from .views import hello_world, home_page, about_page, contact_page, login_page, register_page
+from .views import hello_world, home_page, about_page,\
+        contact_page, login_page, register_page, logout_page
 # from search.views import SearchProductView
 from carts.views import cart_detail_api_view
 
@@ -25,6 +26,7 @@ urlpatterns = [
     url(r'^about/$', about_page),
     url(r'^contact/$', contact_page, name='contact'),
     url(r'^login/$', login_page, name='login'),
+    url(r'^logout/$', logout_page, name='logout'),
     url(r'^register/$', register_page, name='register'),
 
     url(r'^api/cart/$', cart_detail_api_view, name='api-cart'),

@@ -2,6 +2,7 @@
 {% url 'contact' as contact_url %}
 {% url 'products:list' as products_list_url %}
 {% url 'login' as login_url %}
+{% url 'logout' as logout_url %}
 {% url 'register' as register_url %}
 {% url 'carts:home' as cart_url %}
 
@@ -30,20 +31,25 @@
       <!--
          -Need to implement Logout
          -->
-          <li class="nav-item {% if request.path == login_url%} active {%endif%}">
-              <a class="nav-link" href="{{login_url}}">লগ আঊট</a>
-          </li>
+       <!--logout-->
+        <li class="nav-item {% if request.path == login_url%} active {%endif%}">
+              <a class="nav-link" href="{{logout_url}}">লগ আঊট</a>
+        </li>
       {% else %}
-          <li class="nav-item {% if request.path == login_url%} active {%endif%}">
-              <a class="nav-link" href="{{login_url}}">লগইন</a>
-          </li>
+      <!--login-->
+        <li class="nav-item {% if request.path == login_url%} active {%endif%}">
+              <a class="nav-link" href="{{login_url}}">লগইন</a> 
+        </li>
+      <!--register-->
           <li class="nav-item {% if request.path == register_url %} active {%endif%}">
-              <a class="nav-link" href="{{ register_url}}#">রেজিস্টার</a>
+              <a class="nav-link" href="{{ register_url}}#">রেজিস্টার</a> 
           </li>
       {% endif %}
+      <!--contact-->
       <li class="nav-item {% if request.path == contact_url %} active {%endif%}">
           <a class="nav-link" href="{{ contact_url}}#">যোগাযোগ</a>
       </li>
+    <!--cart-->
       <li class="nav-item {% if request.path == cart_url %} active {%endif%}">
         <a class="nav-link" href="{{ cart_url}}#"><i class="fas fa-shopping-cart"></i>  <span class='navbar-cart-count'>{{request.session.cart_items}}</span></a>
       </li>

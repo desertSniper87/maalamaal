@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from .forms import ContactForm, LoginForm, RegisterForm
 
 def home_page(request):
@@ -22,6 +22,8 @@ def contact_page(request):
               }
     if form.is_valid():
         print(form.cleaned_data)
+        if request.is_ajax():
+            return JsonResponse({'message': 'Thank you'})
     # if request.method == "POST":
         # print(request.POST.get('form_full_name'))
         # print(request.POST.get('form_email'))
@@ -57,6 +59,10 @@ def login_page(request):
             print("ERROR")
 
     return render(request, "auth/login.html", context)
+
+def logout_page(request):
+    logout(request)
+    return redirect("login")
 
 User = get_user_model()
 
