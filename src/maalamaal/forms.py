@@ -20,12 +20,20 @@ class ContactForm(forms.Form):
             attrs={"class": "form-control",
                    "id": "form_content",
                    "placeholder": "Your content"}))
+
     def clean_email(self):
         email = self.cleaned_data.get("email")
         if not "gmail.com" in email:
             raise forms.ValidationError("Email has to be gmail.")
-
         return email
+
+    def clean_content(self):
+        content = self.cleaned_data.get("content")
+        print("len(content): ", len(content))
+        if len(content)<10:
+            raise forms.ValidationError("Content has to be at least 10\
+                    Characters long")
+        return content
 
 class LoginForm(forms.Form):
     username = forms.CharField()
