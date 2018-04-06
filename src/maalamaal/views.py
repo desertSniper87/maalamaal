@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from .forms import ContactForm, LoginForm, RegisterForm
@@ -23,7 +23,15 @@ def contact_page(request):
     if form.is_valid():
         print(form.cleaned_data)
         if request.is_ajax():
-            return JsonResponse({'message': 'Thank you'})
+            return JsonResponse({'message': 'Thank you for your submission.'})
+
+    if form.errors:
+        errors = form.errors.as_json();
+        print(form.cleaned_data)
+        if request.is_ajax():
+            return HttpResponse(errors, status=400,\
+                    content_type='application/json')
+
     # if request.method == "POST":
         # print(request.POST.get('form_full_name'))
         # print(request.POST.get('form_email'))
@@ -31,10 +39,12 @@ def contact_page(request):
     return render(request, "contact/view.html", context)
 
 def about_page(request):
+
     context = {
                "title" : "About",
                "content" : "Welcome to the about page"
               }
+
     return render(request, "home_page.html", context)
 
 def login_page(request):

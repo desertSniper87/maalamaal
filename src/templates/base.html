@@ -41,7 +41,7 @@
           event.preventDefault();
 
           var contactFormData = $contactForm.serialize();
-          var $thisContactForm = $(".contact-from");
+          var $thisContactForm = $(this);
 
           $.ajax({
             method: contactFormMethod,
@@ -49,23 +49,29 @@
             data: contactFormData,
 
             success: function(data){
-              $thisContactForm.reset();
+              console.log("$thisContactForm: ", $thisContactForm);
+              $thisContactForm[0].reset();
               $.alert({
                 title: "Success!",
-                content: "Thank you for your submission.",
+                content: data.message,
                 theme: "modern",
               });
-
             },
 
-            error: function(error) {
+            error: function(errorData) {
+              console.log("Error: ", errorData.responseJson);
+              var jsonData = errorData.responseJson();
+              var cFormErrMsg = "";
+
+              $.each(jsonData, function(key, value){
+                cFormErrMsg += key + ": " + value;
+              })
+              //console.log(errorData);
               $.alert({
                 title: "Oops!",
-                content: "An error occured",
+                content: cFormErrMsg,
                 theme: "modern",
               });
-              console.log("Error: ");
-              console.log(errorData);
             }
 
           })
@@ -90,10 +96,14 @@
         })
 
         function performSearch(){
-          searchBtn.addClass("disabled");
-          searchBtn.html("<i class='fa fa-spin fa-spinner'></i> Searching...");
+          displaySubmitting();
           var query = searchInput.val();
           window.location.href = '/search/?q=' + query;
+        }
+
+        function displaySubmitting(){
+          searchBtn.addClass("disabled");
+          searchBtn.html("<i class='fa fa-spin fa-spinner'></i> Searching...");
         }
 
         
