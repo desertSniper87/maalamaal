@@ -2,7 +2,7 @@
     "version": 2,
     "name": "now-maalamaal",
     "builds": [{
-        "src": "src/maalamaal/wsgi.py",
+        "src": "src",
         "use": "@ardnt/now-python-wsgi",
         "config": { "maxLambdaSize": "15mb" }
     }],
